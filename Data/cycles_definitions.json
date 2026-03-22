@@ -1,0 +1,42 @@
+{
+  "3x8": {
+    "type": "",
+    "description": "3x8 rotation hebdomadaire (une semaine par poste)"
+  },
+  "3x8_MENSUEL": {
+    "type": "",
+    "description": "3x8 rotation mensuelle (~4 semaines par poste)"
+  },
+  "2x8": {
+    "type": "",
+    "description": "2x8 rotation hebdomadaire (une semaine par poste)"
+  },
+  "2x8_MENSUEL": {
+    "type": "",
+    "description": "2x8 rotation mensuelle (~24 semaines par poste, soit 6 mois)"
+  },
+  "M_FIXE": {
+    "type": "",
+    "description": "Matin fixe - toujours en poste matin"
+  },
+  "AM_FIXE": {
+    "type": "",
+    "description": "Après-midi fixe - toujours en poste après-midi"
+  },
+  "N_FIXE": {
+    "type": "",
+    "description": "Nuit fixe - toujours en poste nuit"
+  },
+  "J": {
+    "type": "",
+    "description": "Journée administrative fixe"
+  },
+  "WEEKEND_3x8": {
+    "type": "",
+    "description": "3x8 avec week-end inclus - A COMPLETER avec le nombre de jours et la rotation exacte"
+  },
+  "M_Fixe": {
+    "type": "",
+    "description": "Que matin"
+  }
+}
