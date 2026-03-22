@@ -23,16 +23,24 @@ else:
     # En mode module ui/, remonter d'un niveau par rapport à ui/
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Dossier des données JSON (sous-dossier Data/)
+DATA_DIR = os.path.join(BASE_DIR, "Data")
+
+# Dossier des backups (à la racine, pas dans Data/)
+BACKUP_DIR = os.path.join(BASE_DIR, "backup")
+
 
 def get_chemins(base):
+    """Retourne les chemins des fichiers JSON dans le dossier Data/."""
+    data = os.path.join(base, "Data")
     return {
-        "employes":          os.path.join(base, "employes_contrats.json"),
-        "cycles_def":        os.path.join(base, "cycles_definitions.json"),
-        "cycles_emp":        os.path.join(base, "cycles_employes.json"),
-        "absences":          os.path.join(base, "absences_projections.json"),
-        "exceptions":        os.path.join(base, "am_mensuels_exceptions.json"),
-        "planning":          os.path.join(base, "planning_historique.json"),
-        "import_historique": os.path.join(base, "import_historique.json"),
+        "employes":          os.path.join(data, "employes_contrats.json"),
+        "cycles_def":        os.path.join(data, "cycles_definitions.json"),
+        "cycles_emp":        os.path.join(data, "cycles_employes.json"),
+        "absences":          os.path.join(data, "absences_projections.json"),
+        "exceptions":        os.path.join(data, "am_mensuels_exceptions.json"),
+        "planning":          os.path.join(data, "planning_historique.json"),
+        "import_historique": os.path.join(data, "import_historique.json"),
     }
 
 
@@ -264,16 +272,15 @@ def sauvegarder_json(chemin, data):
 
 def faire_backup(chemin_json, callback_log=None):
     """
-    Crée un backup du fichier JSON dans un sous-dossier 'backup/'.
+    Crée un backup du fichier JSON dans backup/ à la racine du projet.
     Retourne le chemin du backup créé, ou None si le fichier source n'existe pas.
     """
     if not os.path.exists(chemin_json):
         return None
-    dossier_backup = os.path.join(os.path.dirname(chemin_json), "backup")
-    os.makedirs(dossier_backup, exist_ok=True)
+    os.makedirs(BACKUP_DIR, exist_ok=True)
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     nom = os.path.splitext(os.path.basename(chemin_json))[0]
-    chemin_backup = os.path.join(dossier_backup, f"{nom}_{ts}.json")
+    chemin_backup = os.path.join(BACKUP_DIR, f"{nom}_{ts}.json")
     shutil.copy2(chemin_json, chemin_backup)
     if callback_log:
         callback_log(f"💾 Backup : {chemin_backup}")
